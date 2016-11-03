@@ -30,27 +30,51 @@ const static CGFloat OffSetY = 35.0;
     self = [super init];
     if (self) {
         self.layersArray = [NSMutableArray array];
-        _stretchView = [[UIScrollView alloc]initWithFrame:view.bounds];
-        _stretchView.showsVerticalScrollIndicator = NO;
-        _stretchView.showsHorizontalScrollIndicator = NO;
-        _stretchView.minimumZoomScale = 0.2;
-        _stretchView.maximumZoomScale = 5;
-        _stretchView.delegate = self;
-        [view addSubview:_stretchView];
-        
-        [_stretchView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        NSArray *contrains1 = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scorll]-0-|" options:0 metrics:nil views:@{@"scorll":_stretchView}];
-        NSArray *contrains2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scorll]-0-|" options:0 metrics:nil views:@{@"scorll":_stretchView}];
-        [view addConstraints:contrains1];
-        [view addConstraints:contrains2];
-        self.originalPoint = CGPointMake(40, view.height / 2.0);
-        _topItemCenter = CGPointMake(1, 1);
-        
-        _contentView = [[UIView alloc]initWithFrame:_stretchView.bounds];
+        _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, view.width * 5, view.height * 5)];
+        [view addSubview:_contentView];
         _contentView.backgroundColor = [UIColor redColor];
-        [_stretchView addSubview:_contentView];
+        _contentView.center = CGPointMake(_contentView.center.x, view.height / 2.0);
+        self.originalPoint = CGPointMake(40, _contentView.height / 2.0);
+        _topItemCenter = CGPointMake(1, 1);
+        [self addGestureRecognizerToView:_contentView];
     }
     return self;
+}
+
+#pragma mark -- 添加手势
+- (void) addGestureRecognizerToView:(UIView *)view
+{
+    [view setUserInteractionEnabled:YES];
+    [view setMultipleTouchEnabled:YES];
+    
+    // 缩放手势
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchView:)];
+    [view addGestureRecognizer:pinchGestureRecognizer];
+    
+    // 移动手势
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panView:)];
+    panGestureRecognizer.maximumNumberOfTouches = 1;
+    [view addGestureRecognizer:panGestureRecognizer];
+}
+
+// 处理缩放手势
+- (void) pinchView:(UIPinchGestureRecognizer *)pinchGestureRecognizer
+{
+    UIView *view = pinchGestureRecognizer.view;
+    if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        view.transform = CGAffineTransformScale(view.transform, pinchGestureRecognizer.scale, pinchGestureRecognizer.scale);
+        pinchGestureRecognizer.scale = 1;
+    }
+}
+
+- (void) panView:(UIPanGestureRecognizer *)panGestureRecognizer
+{
+    UIView *view = panGestureRecognizer.view;
+    if (panGestureRecognizer.state == UIGestureRecognizerStateBegan || panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [panGestureRecognizer translationInView:view.superview];
+        [view setCenter:(CGPoint){view.center.x + translation.x, view.center.y + translation.y}];
+        [panGestureRecognizer setTranslation:CGPointZero inView:view.superview];
+    }
 }
 
 - (void)setDataSource:(WNPointModel *)dataSource
@@ -74,13 +98,13 @@ const static CGFloat OffSetY = 35.0;
     [self setMenu:self.dataSource];
 }
 /*
- @property (nonatomic, assign)CGPoint center;//坐标值
+ @property (nonatomic, assign)CGPoint center;坐标值
  @property (nonatomic, assign)CGPoint leftPoint;
  @property (nonatomic, assign)CGPoint rightPoint;
  @property (nonatomic, strong)UIBezierPath *path;
  @property (nonatomic, strong)CALayer *layer;
  @property (nonatomic, assign)NSInteger level;
- @property (nonatomic, assign)NSInteger offSetX;//根据title的长度定
+ @property (nonatomic, assign)NSInteger offSetX;根据title的长度定
 */
 - (void)clearDataSource:(WNPointModel *)model
 {
