@@ -20,6 +20,7 @@
 		781129DB1DAA127400D2B510 /* WNMindManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 781129DA1DAA127400D2B510 /* WNMindManager.m */; };
 		781129DE1DAA16EC00D2B510 /* UIBezierPath+WNPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 781129DD1DAA16EC00D2B510 /* UIBezierPath+WNPoints.m */; };
 		781129E11DB6183500D2B510 /* WNMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 781129E01DB6183500D2B510 /* WNMenu.m */; };
+		78B21DF31DCB0E59004A2106 /* WNPointModel+expandMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B21DF21DCB0E59004A2106 /* WNPointModel+expandMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		781129DD1DAA16EC00D2B510 /* UIBezierPath+WNPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+WNPoints.m"; sourceTree = "<group>"; };
 		781129DF1DB6183500D2B510 /* WNMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNMenu.h; sourceTree = "<group>"; };
 		781129E01DB6183500D2B510 /* WNMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNMenu.m; sourceTree = "<group>"; };
+		78B21DF11DCB0E59004A2106 /* WNPointModel+expandMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WNPointModel+expandMethod.h"; sourceTree = "<group>"; };
+		78B21DF21DCB0E59004A2106 /* WNPointModel+expandMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WNPointModel+expandMethod.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				780D4E9F1D1132D4004AF12B /* UIView+Frame.m */,
 				781129D41DAA118B00D2B510 /* WNPointModel.h */,
 				781129D51DAA118B00D2B510 /* WNPointModel.m */,
+				78B21DF11DCB0E59004A2106 /* WNPointModel+expandMethod.h */,
+				78B21DF21DCB0E59004A2106 /* WNPointModel+expandMethod.m */,
 				781129DF1DB6183500D2B510 /* WNMenu.h */,
 				781129E01DB6183500D2B510 /* WNMenu.m */,
 				781129D71DAA122C00D2B510 /* WNMindManager.h */,
@@ -311,6 +316,7 @@
 				781129E11DB6183500D2B510 /* WNMenu.m in Sources */,
 				781129DE1DAA16EC00D2B510 /* UIBezierPath+WNPoints.m in Sources */,
 				780D4E601D0E871E004AF12B /* main.m in Sources */,
+				78B21DF31DCB0E59004A2106 /* WNPointModel+expandMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
