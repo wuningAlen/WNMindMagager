@@ -12,7 +12,7 @@
 
 - (void)addPropertyWithCenterPoint:(CGPoint *)centerPoint model:(WNPointModel *)model
 {
-    
+    //test git 
 }
 
 //获取最上面的 item
